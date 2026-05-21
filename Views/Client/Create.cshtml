@@ -1,0 +1,26 @@
+﻿@model Client
+
+<h1>Create Client</h1>
+
+<form asp-action="Create" method="post">
+
+    <label>Name</label>
+    <input asp-for="Name" class="form-control" />
+
+    <label>Contact Details</label>
+    <input asp-for="ContactDetails" class="form-control" />
+
+    <label>Region</label>
+
+    <select asp-for="Region"
+            class="form-control"
+            asp-items="@(new SelectList(ViewBag.Regions))">
+    </select>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">
+        Save
+    </button>
+
+</form>

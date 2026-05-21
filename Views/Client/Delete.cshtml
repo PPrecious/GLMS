@@ -1,0 +1,24 @@
+﻿@model Client
+
+<h1>Delete Client</h1>
+
+<h3>Are you sure?</h3>
+
+<div class="card">
+
+    <p><strong>Name:</strong> @Model.Name</p>
+
+    <p><strong>Region:</strong> @Model.Region</p>
+
+</div>
+
+<form asp-action="Delete">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Delete
+    </button>
+
+</form>

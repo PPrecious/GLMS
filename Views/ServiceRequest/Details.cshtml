@@ -1,0 +1,32 @@
+﻿@model GLMS.Web.Models.ServiceRequest
+
+<h1>Service Request Details</h1>
+
+<div class="card">
+
+    <p>
+        <strong>Client:</strong>
+        @(Model?.Contract?.Client?.Name ?? "N/A")
+    </p>
+
+    <p>
+        <strong>Description:</strong>
+        @(Model?.Description ?? "N/A")
+    </p>
+
+    <p>
+        <strong>USD Cost:</strong>
+        @(Model?.CostUSD.ToString("F2") ?? "0.00")
+    </p>
+
+    <p>
+        <strong>ZAR Cost:</strong>
+        @(Model?.CostZAR.ToString("F2") ?? "0.00")
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        @(Model?.Status ?? "N/A")
+    </p>
+
+</div>

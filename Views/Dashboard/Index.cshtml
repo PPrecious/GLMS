@@ -1,0 +1,129 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="mb-4">Welcome, Admin!</h1>
+
+<div class="dashboard-grid">
+
+    <!-- CLIENTS -->
+    <div class="card blue">
+        <h3>Clients</h3>
+        <h1>@Model.TotalClients</h1>
+        <p>Total Registered Clients</p>
+    </div>
+
+    <!-- CONTRACTS -->
+    <div class="card orange">
+        <h3>Contracts</h3>
+        <h1>@Model.TotalContracts</h1>
+        <p>Total Logistics Contracts</p>
+    </div>
+
+    <!-- ACTIVE CONTRACTS -->
+    <div class="card green">
+        <h3>Active Contracts</h3>
+        <h1>@Model.ActiveContracts</h1>
+        <p>Currently Active</p>
+    </div>
+
+    <!-- SERVICE REQUESTS -->
+    <div class="card purple">
+        <h3>Service Requests</h3>
+        <h1>@Model.TotalServiceRequests</h1>
+        <p>Total Requests Logged</p>
+    </div>
+
+</div>
+
+<hr class="my-4" />
+
+<!-- QUICK ACTIONS -->
+<div class="quick-actions">
+
+    <h3>Quick Actions</h3>
+
+    <a asp-controller="Client"
+           asp-action="Create"
+           class="btn btn-primary">
+        + Add Client
+    </a>
+
+    <a asp-controller="Contract"
+           asp-action="Create"
+           class="btn btn-warning">
+        + Add Contract
+    </a>
+
+    <a asp-controller="ServiceRequest"
+           asp-action="Create"
+           class="btn btn-success">
+        + Create Service Request
+    </a>
+
+</div>
+
+<style>
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .card {
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h1 {
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            opacity: 0.9;
+        }
+
+    .blue {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+    }
+
+    .orange {
+        background: linear-gradient(135deg, #ff9800, #ef6c00);
+    }
+
+    .green {
+        background: linear-gradient(135deg, #28a745, #1e7e34);
+    }
+
+    .purple {
+        background: linear-gradient(135deg, #6f42c1, #512da8);
+    }
+
+    .quick-actions {
+        margin-top: 30px;
+    }
+
+        .quick-actions .btn {
+            margin-right: 10px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+</style>

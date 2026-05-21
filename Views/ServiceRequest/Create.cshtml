@@ -1,0 +1,130 @@
+﻿@model GLMS.Web.Models.ServiceRequest
+
+<h1>Create Service Request</h1>
+
+<!-- ERROR HANDLING (IMPROVED) -->
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+<!-- MODEL VALIDATION SUMMARY -->
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Create" method="post">
+
+    <!-- CONTRACT DROPDOWN -->
+    <div class="form-group">
+        <label>Contract</label>
+
+        <select asp-for="ContractId"
+                asp-items="ViewBag.Contracts"
+                class="form-control">
+
+            <option value="">-- Select Contract --</option>
+
+        </select>
+
+        <span asp-validation-for="ContractId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- DESCRIPTION -->
+    <div class="form-group">
+        <label>Description</label>
+
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- USD COST -->
+    <div class="form-group">
+        <label>Cost (USD)</label>
+
+        <input id="usdCost"
+               asp-for="CostUSD"
+               class="form-control"
+               type="number"
+               step="0.01" />
+
+        <span asp-validation-for="CostUSD" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- EXCHANGE RATE -->
+    <div class="form-group">
+        <label>Exchange Rate (USD → ZAR)</label>
+
+        <input id="rate"
+               value="@ViewBag.Rate"
+               readonly
+               class="form-control" />
+    </div>
+
+    <br />
+
+    <!-- ZAR COST -->
+    <div class="form-group">
+        <label>Cost (ZAR)</label>
+
+        <input id="zarCost"
+               asp-for="CostZAR"
+               readonly
+               class="form-control" />
+
+        <span asp-validation-for="CostZAR" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- STATUS DROPDOWN -->
+    <div class="form-group">
+        <label>Status</label>
+
+        <select asp-for="Status" class="form-control">
+
+            <option value="">-- Select Status --</option>
+            <option>Pending</option>
+            <option>Approved</option>
+            <option>Completed</option>
+
+        </select>
+
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- SAVE BUTTON -->
+    <button type="submit" class="btn btn-success">
+        Save Request
+    </button>
+
+</form>
+
+<!-- JAVASCRIPT: AUTO CALCULATE ZAR -->
+<script>
+
+    const usdInput = document.getElementById("usdCost");
+    const rateInput = document.getElementById("rate");
+    const zarInput = document.getElementById("zarCost");
+
+    usdInput.addEventListener("input", function () {
+
+        let usd = parseFloat(this.value) || 0;
+        let rate = parseFloat(rateInput.value) || 0;
+
+        let zar = usd * rate;
+
+        zarInput.value = zar.toFixed(2);
+    });
+
+</script>
